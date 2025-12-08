@@ -136,6 +136,25 @@ app.get("/logout", (req, res, next) => {
 
 app.use('/', fileRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`); // ✅ fixed: backticks used
+// Global error handler middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  const status = err.statusCode || 500;
+  const message = err.message || 'Something went wrong!';
+
+  res.status(status).json({
+    success: false,
+    message,
+  });
 });
+
+
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`); // ✅ fixed: backticks used
+  });
+}
+
+module.exports = app;
