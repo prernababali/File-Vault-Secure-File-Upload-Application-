@@ -1,4 +1,4 @@
-# Odin File Uploader
+
 A secure and modern file uploader web application that allows users to log in using their Google account and upload files to the server. Built using Node.js, Express, Multer, Passport (Google OAuth), Prisma ORM, and EJS templating.
 
 
